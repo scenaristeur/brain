@@ -1,5 +1,7 @@
 # brain
 
+see protocolB folder for more info
+
 ## Project setup
 ```
 npm install
@@ -24,4 +26,4 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### todo
-- [ ] bootstrap-vue-3 deprecated https://www.npmjs.com/package/bootstrap-vue-3
+- [ ] bootstrap-vue-3 deprecated https://www.npmjs.com/package/bootstrap-vue-3 with doc https://bootstrap-vue.org/docs/components
