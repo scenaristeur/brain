@@ -2,7 +2,7 @@
   <div class="home">
     <b-container fluid>
       <b-row>
-        <b-col cols="6">
+        <b-col >
           <div>
             <b-dropdown id="dropdown-1" text="Workspaces" class="m-md-2">
               <b-dropdown-item v-for="w in workspaces" :key="w.name" @click="workspaceSelected(w)">{{ w.name }}</b-dropdown-item>
@@ -12,7 +12,26 @@
             </b-dropdown>
           </div>
         </b-col>
-        <b-col cols="6">B</b-col>
+        <b-col >
+          <div>
+            <b-button-toolbar key-nav aria-label="Toolbar with button groups">
+              <b-button-group class="mx-1">
+                <b-button>&laquo;</b-button>
+                <b-button>&lsaquo;</b-button>
+              </b-button-group>
+              <b-button-group class="mx-1">
+                <b-button>Edit</b-button>
+                <b-button>Undo</b-button>
+                <b-button>Redo</b-button>
+              </b-button-group>
+              <b-button-group class="mx-1">
+                <b-button>&rsaquo;</b-button>
+                <b-button>&raquo;</b-button>
+              </b-button-group>
+            </b-button-toolbar>
+          </div>
+
+        </b-col>
 
       </b-row>
     </b-container>
