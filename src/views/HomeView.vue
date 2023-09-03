@@ -7,8 +7,8 @@
             <b-dropdown id="dropdown-1" text="Workspaces" class="m-md-2">
               <b-dropdown-item @click="workspaceCreate">New Workspace</b-dropdown-item>
               <b-dropdown-divider></b-dropdown-divider>
-              <b-dropdown-item v-for="w in workspaces" :key="w.name" @click="workspaceSelected(w)">{{ w.name
-              }}</b-dropdown-item>
+              <!-- <b-dropdown-item v-for="w in workspaces" :key="w.name" @click="workspaceSelected(w)">{{ w.name
+              }}</b-dropdown-item> -->
 
               <b-dropdown-item disabled>Disabled action</b-dropdown-item>
             </b-dropdown>
@@ -53,18 +53,13 @@
             <b-form-input id="input-2" v-model="nw.url" placeholder="Enter url" required></b-form-input>
           </b-form-group>
 
-
-
-
-
-
-
           <b-button type="submit" variant="primary">Submit</b-button>
           <b-button type="reset" variant="danger">Reset</b-button>
         </b-form>
 
       </b-row>
     </b-container>
+    <WorkspaceList />
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
@@ -74,6 +69,7 @@
 // @ is an alias to /src
 
 import HelloWorld from '@/components/HelloWorld.vue'
+import WorkspaceList from '@/views/WorkspaceList.vue'
 import Workspace from '@/entities/workspace.js';
 
 
@@ -81,11 +77,11 @@ import Workspace from '@/entities/workspace.js';
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+    HelloWorld, WorkspaceList
   },
   data() {
     return {
-      workspaces: [
+      workspaces_examples: [
         { name: "Solid example", url: "https://spoggy-test2.solidcommunity.net/public/protocoleb_test/" },
         { name: "Ipfs example", url: "ipfs://QmPK9UToVFCHKAuGjxfLUKN37PGF7ZjQVa1t6dcY7yLpHi" },
         { name: "Google Drive example", url: "https://drive.google.com/drive/folders/1K9fATJFtXuJVZzjbgW6KwFvHPBADt4G4" }
@@ -95,7 +91,10 @@ export default {
     }
   },
   async created() {
-
+    for (let workspace of this.workspaces_examples) {
+      let ws = new Workspace(workspace)
+      await this.$store.commit('core/addWorkspace', ws)
+    }
   },
   methods: {
     updateDir(data) {
@@ -110,6 +109,7 @@ export default {
     },
     onSubmit() {
       console.log(this.nw)
+      this.$store.commit('core/addWorkspace', this.nw)
       this.onReset()
     },
     onReset() {

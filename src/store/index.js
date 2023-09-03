@@ -1,7 +1,9 @@
 import { createStore } from 'vuex'
+import core from './modules/core'
 
 export default createStore({
   state: {
+    workspaces: []
   },
   getters: {
   },
@@ -10,5 +12,6 @@ export default createStore({
   actions: {
   },
   modules: {
+    core,
   }
 })
