@@ -238,11 +238,6 @@ const plugin = {
     }
 
     app.config.globalProperties.$checkBrains = async function(){
-console.log("CHECK BRAINS")
-    }
-
-
-    app.config.globalProperties.$checkBrains1 = async function(){
       app.config.globalProperties.$spinnerAdd({id: "checkBrains"})
       try{
         const file = await getFile(store.state.solid.pod.brains, { fetch: sc.fetch });

@@ -18,9 +18,9 @@ createApp(App)
   .use(store)
   .use(router)
   .use(BootstrapVue3)
-  .use(CorePlugin, { store: store })
-  .use(SolidPlugin, { store: store })
-  .use(SolidDataPlugin, { store: store })
+  .use(CorePlugin, { store })
+  .use(SolidPlugin, { store })
+  .use(SolidDataPlugin, { store })
   .use(BrainPlugin, {
     store,
     /* optional options */

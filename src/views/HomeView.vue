@@ -43,15 +43,15 @@
             <b-form-input id="input-1" v-model="nw.name" type="text" placeholder="Enter name" required></b-form-input>
           </b-form-group>
 
-          <b-form-group id="input-group-3" label="Type:" label-for="input-3">
+          <!-- <b-form-group id="input-group-3" label="Type:" label-for="input-3">
             <b-form-select id="input-3" v-model="nw.type" :options="types" required @input="typeChanged"></b-form-select>
-          </b-form-group>
+          </b-form-group> -->
 
 
-
-          <b-form-group id="input-group-2" label="Workspace url:" label-for="input-2" v-if="nw.type != 'memory'">
-            <b-form-input id="input-2" v-model="nw.url" placeholder="Enter url" required></b-form-input>
-          </b-form-group>
+          <!-- 
+          <b-form-group id="input-group-2" label="Workspace location:" label-for="input-2" >
+            <b-form-input id="input-2" v-model="nw.url" placeholder="Enter location" required></b-form-input>
+          </b-form-group> -->
 
           <b-button type="submit" variant="primary">Submit</b-button>
           <b-button type="reset" variant="danger">Reset</b-button>
@@ -61,19 +61,19 @@
     </b-container>
 
 
-    session  {{ session}}
+    session {{ session }}
 
 
     <WorkspaceList />
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <!-- <img alt="Vue logo" src="../assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App" /> -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 
-import HelloWorld from '@/components/HelloWorld.vue'
+// import HelloWorld from '@/components/HelloWorld.vue'
 import WorkspaceList from '@/views/WorkspaceList.vue'
 import Workspace from '@/entities/workspace.js';
 
@@ -82,26 +82,27 @@ import Workspace from '@/entities/workspace.js';
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld, WorkspaceList
+    // HelloWorld,
+    WorkspaceList
   },
   data() {
     return {
-      workspaces_examples: [
-        { name: "LocalStorage example", type: "localstorage" },
-        { name: "Memory example", type: "memory" },
-        { name: "Solid example", urls: ["https://spoggy-test2.solidcommunity.net/public/protocoleb_test/"], type: "solid" },
-        { name: "Ipfs example", urls: ["ipfs://QmPK9UToVFCHKAuGjxfLUKN37PGF7ZjQVa1t6dcY7yLpHi"], type: "ipfs" },
-        { name: "Google Drive example", urls: ["https://drive.google.com/drive/folders/1K9fATJFtXuJVZzjbgW6KwFvHPBADt4G4"], type: "gdrive" },
-      ],
+      // workspaces_examples: [
+      //   { name: "LocalStorage example", type: "localstorage" },
+      //   { name: "Memory example", type: "memory" },
+      //   { name: "Solid example", urls: ["https://spoggy-test2.solidcommunity.net/public/protocoleb_test/"], type: "solid" },
+      //   { name: "Ipfs example", urls: ["ipfs://QmPK9UToVFCHKAuGjxfLUKN37PGF7ZjQVa1t6dcY7yLpHi"], type: "ipfs" },
+      //   { name: "Google Drive example", urls: ["https://drive.google.com/drive/folders/1K9fATJFtXuJVZzjbgW6KwFvHPBADt4G4"], type: "gdrive" },
+      // ],
       nw: null,
-      types: ["memory", "localstorage", "filesystem", "solid", "gdrive", "ipfs"],
+      // types: ["memory", "localstorage", "filesystem", "solid", "gdrive", "ipfs"],
     }
   },
   async created() {
-    for (let workspace of this.workspaces_examples) {
-      let ws = new Workspace(workspace)
-      await this.$store.commit('core/addWorkspace', ws)
-    }
+    // for (let workspace of this.workspaces_examples) {
+    //   let ws = new Workspace(workspace)
+    //   await this.$store.commit('core/addWorkspace', ws)
+    // }
   },
   methods: {
     updateDir(data) {
@@ -116,7 +117,8 @@ export default {
     },
     onSubmit() {
       console.log(this.nw)
-      this.$store.commit('core/addWorkspace', this.nw)
+      //this.$store.commit('core/addWorkspace', this.nw)
+      this.$createWorkspace(this.nw)
       this.onReset()
     },
     onReset() {

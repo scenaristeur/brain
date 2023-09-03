@@ -83,7 +83,7 @@ const plugin = {
         await sc.login({
           oidcIssuer: issuer,
           redirectUrl: window.location.href,
-          clientName: "Agent"
+          clientName: "Brain"
         });
       }
     },
@@ -111,7 +111,7 @@ const plugin = {
         //  await this.$getVerses(pod)
 
         if (pod.storage != null){
-          pod.brains = pod.storage+'brains.json'
+          pod.brains = pod.storage+'workspaces.json'
           app.config.globalProperties.$checkBrains()
           //  this.$setCurrentThingUrl(pod.storage)
           //  store.commit('booklice/setPath', pod.storage+'public/bookmarks/')

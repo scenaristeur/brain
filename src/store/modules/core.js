@@ -3,6 +3,9 @@
 const state = () => ({
   workspaces: [],
   currentWorkspace: null,
+  spinner: [],
+  brain: undefined,
+  brains: undefined,
   //   coreCurrent: null,
   //   // user: null,
   //   history: [],
@@ -15,6 +18,23 @@ const mutations = {
   },
   currentWorkspace(state, w) {
     state.currentWorkspace = w;
+  },
+  spinnerAdd(state,t){
+    state.spinner.push(t)
+  },
+  spinnerRemove(state, t){
+    state.spinner = state.spinner.filter(x => x.id!=t.id )
+  },
+  resetSpinner(state){
+    state.spinner = []
+  },
+  setBrain(state, b){
+    console.log(b)
+    state.brain = b
+  },
+  setBrains(state, b){
+    state.brains = b
+    state.showBrainLoader = true
   },
 
   // setToast(state, t) {
