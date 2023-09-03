@@ -59,6 +59,11 @@
 
       </b-row>
     </b-container>
+
+
+    session  {{ session}}
+
+
     <WorkspaceList />
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App" />
@@ -83,7 +88,7 @@ export default {
     return {
       workspaces_examples: [
         { name: "LocalStorage example", type: "localstorage" },
-        { name: "Memory example",  type: "memory" },
+        { name: "Memory example", type: "memory" },
         { name: "Solid example", urls: ["https://spoggy-test2.solidcommunity.net/public/protocoleb_test/"], type: "solid" },
         { name: "Ipfs example", urls: ["ipfs://QmPK9UToVFCHKAuGjxfLUKN37PGF7ZjQVa1t6dcY7yLpHi"], type: "ipfs" },
         { name: "Google Drive example", urls: ["https://drive.google.com/drive/folders/1K9fATJFtXuJVZzjbgW6KwFvHPBADt4G4"], type: "gdrive" },
@@ -120,6 +125,11 @@ export default {
     typeChanged() {
       this.nw.type == "memory" ? this.nw.url = "" : ""
     }
-  }
+  },
+  computed: {
+    session() {
+      return this.$store.state.solid.session
+    }
+  },
 }
 </script>

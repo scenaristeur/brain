@@ -10,6 +10,10 @@
     "postgit": "git push && git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
+    "@inrupt/solid-client": "^1.30.0",
+    "@inrupt/solid-client-authn-browser": "^1.17.1",
+    "@inrupt/vocab-common-rdf": "^1.0.5",
+    "@inrupt/vocab-solid-common": "^0.7.5",
     "bootstrap": "^5.3.1",
     "bootstrap-vue-3": "^0.5.1",
     "browserfs": "^1.4.3",

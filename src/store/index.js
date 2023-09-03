@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import core from './modules/core'
+import solid from './modules/solid'
 
 export default createStore({
   state: {
@@ -12,6 +13,6 @@ export default createStore({
   actions: {
   },
   modules: {
-    core,
+    core, solid
   }
 })
