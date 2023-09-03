@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkbrain"]=self["webpackChunkbrain"]||[]).push([[443],{833:function(n,a,r){r.r(a),r.d(a,{default:function(){return f}});var u=r(3396);const t={class:"about"},e=(0,u._)("h1",null,"This is an about page",-1),s=[e];function i(n,a){return(0,u.wg)(),(0,u.iD)("div",t,s)}var c=r(89);const o={},b=(0,c.Z)(o,[["render",i]]);var f=b}}]);
-//# sourceMappingURL=about.0612dfdf.js.map
