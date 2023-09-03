@@ -74,6 +74,8 @@
 // @ is an alias to /src
 
 import HelloWorld from '@/components/HelloWorld.vue'
+import { initialize, FileSystem } from 'browserfs'
+import { Buffer } from 'buffer'
 import Workspace from '@/entities/workspace.js';
 
 
@@ -92,10 +94,47 @@ export default {
       ],
       nw: null,
       types: ["memory", "local", "solid", "google drive", "ipfs"],
+      memfs: new FileSystem.InMemory(),
+      localfs: new FileSystem.LocalStorage(),
+      mfs: new FileSystem.MountableFileSystem(
+        //        {
+        //   '/tmp': { fs: "InMemory" },
+        //   '/home': { fs: "IndexedDB" },
+        //   '/mnt/usb0': { fs: "LocalStorage" }
+        // }
+      )
     }
   },
   async created() {
+    console.log(FileSystem, initialize, Buffer)
+    console.log("memfs", this.memfs)
+    console.log('localstorage', this.localfs)
+    console.log('mfs', this.mfs)
+    initialize(this.mfs)
+    this.mfs.mkdirSync('/test/')
+    this.mfs.mkdirSync('/test/boop/');
+    console.log(this.mfs.readdirSync('/test'))
+    console.log(this.mfs.readdirSync('/'))
+   // this.mfs.writeFile('/hello.txt', 'hello', null, null, 1, function(d){console.log("cb", d)})
+    //console.log(this.mfs.writeFileSync())
+    // let res = await this.mfs.writeFileSync('/test.txt', 'Cool, I can do this in the browser!',"utf-8", 'w')
+    // console.log(res)
+    // doc http://jvilk.com/browserfs/1.4.1/classes/_backend_mountablefilesystem_.mountablefilesystem.html#writefilesync
+//     this.mfs.writeFileSync('/test.txt', 'Cool, I can do this in the browser!'/*, "utf-8",*/,/* "w", 2,*/,  function(err) {
+// if (err != null) console.log(err)
+//   // this.fs.readFile('/test.txt', function(err, contents) {
+//   //   console.log(contents.toString(), err);
+//   // });
+// });
+    console.log(this.mfs.readdirSync('/'))
+    // console.log(this.mfs.readdirSync('/home'))
 
+
+    //  var fs = this.fs //require('fs');
+    //  let write =  fs.writeFile('/test.txt', 'Cool, I can do this in the browser!')
+    //  console.log(write)
+    // this.fs.createFolder(this.fs.root, 'data', true, true);
+    // this.fs.mount(this.fs, {root: '/'}, '/data');
   },
   methods: {
     updateDir(data) {
@@ -105,7 +144,10 @@ export default {
       console.log(w.name, w.url)
     },
     workspaceCreate() {
-      this.nw = new Workspace()
+      let ws = new Workspace()
+      console.log("Workspace", ws)
+      ws.test()
+      this.nw = 
       console.log(this.nw)
     },
     onSubmit() {

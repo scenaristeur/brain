@@ -14,7 +14,7 @@ protocol BProtocol {
  function sources_examples(){
  sources = [
     {name : "Solid_example", url: "https://spoggy-test2.solidcommunity.net/public/protocoleb_test/"},
-    {name: "IPFS_example", url: "ipfs://QmPK9UToVFCHKAuGjxfLUKN37PGF7ZjQVa1t6dcY7yLpHi"},
+    {name: "IPFS_example", url: "ipfs://QmdSWZj7CjnNVWSgqnqestJKXNxF5FEyMN7xgNNsVbMxPM"},
     {name: "GoogleDrive_example", url: "https://drive.google.com/drive/folders/1K9fATJFtXuJVZzjbgW6KwFvHPBADt4G4?usp=sharing"}
  ]
  }
