@@ -1,18 +1,24 @@
 <template>
-  <b-list-group>
-    <b-list-group-item v-for="w in workspaces"  button :key="w.id" @click="workspaceRouter(w)"  class="d-flex justify-content-between align-items-center">
-      {{ w.name }}
-     / {{ w.type }}, {{ w.urls }}
-    
-    </b-list-group-item>
+  <div>
+    <div v-if="brains == undefined">
+      Please first create a Workspace, if it does not work, look for error message in the js console with Ctrl+Maj+I.
+    </div>
+    <b-list-group v-else>
+      <b-list-group-item v-for="w in brains.brains" button :key="w.id" @click="workspaceRouter(w)"
+        class="d-flex justify-content-between align-items-center">
+        {{ w.name }}
+        / {{ w.path }}
 
-  </b-list-group>
+      </b-list-group-item>
+
+    </b-list-group>
+  </div>
 </template>
 
 <script>
 export default {
   name: "WorkspaceList",
-  created() {},
+  created() { },
   data() {
     return {};
   },
@@ -26,10 +32,10 @@ export default {
     }
   },
   computed: {
-        workspaces() {
-            return this.$store.state.core.workspaces
-        }
+    brains() {
+      return this.$store.state.core.brains
     }
+  }
 };
 </script>
 

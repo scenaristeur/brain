@@ -12,6 +12,7 @@
 // @ is an alias to /src
 
 import SolidLogin from '@/components/SolidLogin.vue'
+import SpinnerComp from '@/components/SpinnerComp'
 
 
 
@@ -20,7 +21,8 @@ export default {
   name: 'App',
   components: {
     SolidLogin,
-    'SpinnerComp': ()=>import('@/components/SpinnerComp'),
+    SpinnerComp
+  
   },
   created(){
     this.$checkSolidSession()

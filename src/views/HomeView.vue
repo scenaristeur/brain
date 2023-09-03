@@ -61,8 +61,9 @@
     </b-container>
 
 
-    session {{ session }}
-
+    session {{ session && session.webId }} , {{ pod && pod.photo }}
+    <hr>
+    <!-- brains: <div v-if="brains != undefined">{{ brains.brains }}</div> -->
 
     <WorkspaceList />
     <!-- <img alt="Vue logo" src="../assets/logo.png">
@@ -131,6 +132,12 @@ export default {
   computed: {
     session() {
       return this.$store.state.solid.session
+    },
+    pod() {
+      return this.$store.state.solid.pod
+    },
+    brains() {
+      return this.$store.state.core.brains
     }
   },
 }

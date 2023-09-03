@@ -30,6 +30,9 @@
     <hr>
     {{ workspaces }}
 
+    <hr>
+    #{{ workspace }}
+
   </div>
 </template>
 

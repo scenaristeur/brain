@@ -6,14 +6,14 @@ import {
   //getSolidDatasetWithAcl,
   //getPublicAccess,
   //getAgentAccess,
-  // getFile,
+  getFile,
   // isRawData,
   // getContentType,
   //saveFileInContainer,
   // getContainedResourceUrlAll,
   //getStringNoLocaleAll,
   createContainerAt,
-   getSourceUrl,
+  getSourceUrl,
   // deleteFile,
   //removeThing,
   // removeAll,
@@ -26,7 +26,6 @@ import {
   // createThing,
   // addUrl,
   //buildThing,
-
   overwriteFile,
   // getStringNoLocale,
   // getThing,
@@ -66,30 +65,30 @@ export default {
         console.log(path);
         if (path != null) {
           path = !path.endsWith("/") ? (path += "/") : path;
-          w.path = path + w.id+'/'
+          w.path = path + w.id + "/";
           const container = await createContainerAt(w.path, {
             fetch: sc.fetch,
           });
           console.log("container created", container);
           const savedFileMeta = await overwriteFile(
-            w.path+'.meta.json',
-            new Blob([JSON.stringify('{}')], { type: "application/ld+json" }),
+            w.path + ".meta.json",
+            new Blob([JSON.stringify("{}")], { type: "application/ld+json" }),
             { contentType: "application/ld+json", fetch: sc.fetch }
           );
           //  console.log(savedFile)
 
           console.log(`File saved at ${getSourceUrl(savedFileMeta)}`);
           const savedFileAcl = await overwriteFile(
-            w.path+'.acl.json',
-            new Blob([JSON.stringify('{}')], { type: "application/ld+json" }),
+            w.path + ".acl.json",
+            new Blob([JSON.stringify("{}")], { type: "application/ld+json" }),
             { contentType: "application/ld+json", fetch: sc.fetch }
           );
           //  console.log(savedFile)
 
           console.log(`File saved at ${getSourceUrl(savedFileAcl)}`);
-        
+
           const savedFileMain = await overwriteFile(
-            w.path+'main.json',
+            w.path + "main.json",
             new Blob([JSON.stringify(w)], { type: "application/ld+json" }),
             { contentType: "application/ld+json", fetch: sc.fetch }
           );
@@ -99,7 +98,46 @@ export default {
           //   store.state.core.nodes.forEach(n => {
           //     app.config.globalProperties.$spinnerAdd({id: "saving "+n.id})
           //   });
+          app.config.globalProperties.$addToIndex(w);
         }
+      }
+    };
+
+    app.config.globalProperties.$addToIndex = async (w) => {
+      console.log(w);
+      try {
+        const file = await getFile(store.state.solid.pod.brains, {
+          fetch: sc.fetch,
+        });
+        const reader = new FileReader();
+
+        reader.onload = async () => {
+          try {
+            let brainsIndex = JSON.parse(reader.result);
+            console.log("brains index", brainsIndex);
+            brainsIndex.brains.push({ name: w.name, path: w.path });
+            store.commit("core/setBrains", brainsIndex);
+
+            let indexUpdated = await overwriteFile(
+              store.state.solid.pod.brains,
+              new Blob([JSON.stringify(brainsIndex)], {
+                type: "application/ld+json",
+              }),
+              { contentType: "application/ld+json", fetch: sc.fetch }
+            );
+            console.log("indexUpdated", indexUpdated);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        reader.onerror = (error) => {
+          console.log(error);
+        };
+        reader.readAsText(file);
+      } catch (e) {
+        console.log(e);
+      } finally {
+        app.config.globalProperties.$spinnerRemove({ id: "checkBrains" });
       }
     };
 
