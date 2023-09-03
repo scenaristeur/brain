@@ -82,12 +82,12 @@ export default {
   data() {
     return {
       workspaces_examples: [
-        { name: "Solid example", url: "https://spoggy-test2.solidcommunity.net/public/protocoleb_test/" },
-        { name: "Ipfs example", url: "ipfs://QmPK9UToVFCHKAuGjxfLUKN37PGF7ZjQVa1t6dcY7yLpHi" },
-        { name: "Google Drive example", url: "https://drive.google.com/drive/folders/1K9fATJFtXuJVZzjbgW6KwFvHPBADt4G4" }
+        { name: "Solid example", url: "https://spoggy-test2.solidcommunity.net/public/protocoleb_test/", type: "solid" },
+        { name: "Ipfs example", url: "ipfs://QmPK9UToVFCHKAuGjxfLUKN37PGF7ZjQVa1t6dcY7yLpHi", type: "ipfs" },
+        { name: "Google Drive example", url: "https://drive.google.com/drive/folders/1K9fATJFtXuJVZzjbgW6KwFvHPBADt4G4", type: "gdrive" },
       ],
       nw: null,
-      types: ["memory", "local", "solid", "google drive", "ipfs"],
+      types: ["memory", "local", "solid", "gdrive", "ipfs"],
     }
   },
   async created() {
