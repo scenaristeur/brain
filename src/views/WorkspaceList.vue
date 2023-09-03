@@ -2,7 +2,7 @@
   <b-list-group>
     <b-list-group-item v-for="w in workspaces"  button :key="w.id" @click="workspaceRouter(w)"  class="d-flex justify-content-between align-items-center">
       {{ w.name }}
-     / {{ w.type }}, {{ w.url }}
+     / {{ w.type }}, {{ w.urls }}
     
     </b-list-group-item>
 

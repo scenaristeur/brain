@@ -10,7 +10,7 @@
         <b-button-group class="mx-1">
           <b-button>subspaces</b-button>
           <b-button>bases</b-button>
-          <b-button>tables</b-button>
+          <!-- <b-button>tables</b-button> -->
           <b-button @click="getData">Get Data</b-button>
         </b-button-group>
         <!-- <b-button-group class="mx-1">
@@ -22,11 +22,10 @@
 
     <hr>
 
-
-
-    {{ workspace }}
-
-
+    <h3>{{ workspace.name }}</h3>
+    <span v-for="url in workspace.urls" :key="url">
+      <a :href="url" target="_blank">{{ url }}</a>
+    </span>
 
     <hr>
     {{ workspaces }}
